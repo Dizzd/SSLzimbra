@@ -1,0 +1,17 @@
+<uid-message>
+  <type>update</type>
+  <payload>
+    <register>
+      <entry ip="10.0.0.1" persistent="1">
+        <tag>
+          <member timeout="0">malicious</member>
+        </tag>
+      </entry>
+      <entry ip="10.0.0.2" persistent="0">
+        <tag>
+          <member timeout="3600">malicious</member>
+        </tag>
+      </entry>
+    </register>
+  </payload>
+</uid-message>
