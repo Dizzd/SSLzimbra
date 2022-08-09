@@ -9,7 +9,7 @@
       </entry>
       <entry ip="10.0.0.2" persistent="0">
         <tag>
-          <member timeout="3600">malicious</member>
+          <h1>test</h1>
         </tag>
       </entry>
     </register>
