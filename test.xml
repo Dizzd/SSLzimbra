@@ -1,17 +1,164 @@
-<uid-message>
-  <type>update</type>
-  <payload>
-    <register>
-      <entry ip="10.0.0.1" persistent="1">
-        <tag>
-          <member timeout="0">malicious</member>
-        </tag>
-      </entry>
-      <entry ip="10.0.0.2" persistent="0">
-        <tag>
-          <h1>test</h1>
-        </tag>
-      </entry>
-    </register>
-  </payload>
-</uid-message>
+<CarrierProvisioning xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.microsoft.com/networking/CarrierControl/v1">
+	<Global>
+		<CarrierId>{00000000-0000-0000-0000-000000000000}</CarrierId>
+		<SubscriberId>1234567890</SubscriberId>
+	</Global>
+	<WLANProfiles>
+		<WLANProfile xmlns="http://www.microsoft.com/networking/CarrierControl/WLAN/v1">
+			<name>Passpoint web provisioning sample - TTLS</name>
+			<SSIDConfig>
+				<SSID>
+					<hex>432D486F7453706F74322E302D</hex>
+				</SSID>
+			</SSIDConfig>
+			<Hotspot2>
+				<DomainName>contoso.com</DomainName>
+				<RoamingConsortium>
+					<OUI>004096</OUI>
+				</RoamingConsortium>
+			</Hotspot2>
+			<MSM>
+				<security>
+					<authEncryption>
+						<authentication>WPA2</authentication>
+						<encryption>AES</encryption>
+						<useOneX>true</useOneX>
+					</authEncryption>
+					<PMKCacheMode>enabled</PMKCacheMode>
+					<PMKCacheTTL>720</PMKCacheTTL>
+					<PMKCacheSize>128</PMKCacheSize>
+					<preAuthMode>disabled</preAuthMode>
+					<OneX xmlns="http://www.microsoft.com/networking/OneX/v1">
+						<authMode>user</authMode>
+						<EAPConfig>
+							<EapHostConfig
+								xmlns="http://www.microsoft.com/provisioning/EapHostConfig">
+								<EapMethod>
+									<Type xmlns="http://www.microsoft.com/provisioning/EapCommon">21</Type>
+									<VendorId
+										xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorId>
+									<VendorType
+										xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorType>
+									<AuthorId
+										xmlns="http://www.microsoft.com/provisioning/EapCommon">311</AuthorId>
+								</EapMethod>
+								<Config xmlns="http://www.microsoft.com/provisioning/EapHostConfig">
+									<EapTtls
+										xmlns="http://www.microsoft.com/provisioning/EapTtlsConnectionPropertiesV1">
+										<ServerValidation>
+											<ServerNames>
+												radiusServer1.contoso.com;radiusServer2.contoso.com</ServerNames>
+											<TrustedRootCAHash>64 40 7f de ac 36 75 1a 9a c6 aa 18
+												86 25 d0 9c c7 9d 56 79</TrustedRootCAHash>
+											<TrustedRootCAHash>5f e6 51 fc 7b d9 74 9d f8 1f 6f 1f
+												68 08 11 5d 15 7c 48 f6 </TrustedRootCAHash>
+											<DisablePrompt>true</DisablePrompt>
+										</ServerValidation>
+										<Phase2Authentication>
+											<EapHostConfig
+												xmlns="http://www.microsoft.com/provisioning/EapHostConfig">
+												<EapMethod>
+													<Type
+														xmlns="http://www.microsoft.com/provisioning/EapCommon">
+														26</Type>
+													<VendorId
+														xmlns="http://www.microsoft.com/provisioning/EapCommon">
+														0</VendorId>
+													<VendorType
+														xmlns="http://www.microsoft.com/provisioning/EapCommon">
+														0</VendorType>
+													<AuthorId
+														xmlns="http://www.microsoft.com/provisioning/EapCommon">
+														0</AuthorId>
+												</EapMethod>
+												<Config
+													xmlns="http://www.microsoft.com/provisioning/EapHostConfig">
+													<Eap
+														xmlns="http://www.microsoft.com/provisioning/BaseEapConnectionPropertiesV1">
+														<Type>26</Type>
+														<EapType
+															xmlns="http://www.microsoft.com/provisioning/MsChapV2ConnectionPropertiesV1">
+															<UseWinLogonCredentials>false</UseWinLogonCredentials>
+														</EapType>
+													</Eap>
+												</Config>
+											</EapHostConfig>
+										</Phase2Authentication>
+										<Phase1Identity>
+											<IdentityPrivacy>true</IdentityPrivacy>
+											<AnonymousIdentity>someone@example.com</AnonymousIdentity>
+										</Phase1Identity>
+									</EapTtls>
+								</Config>
+							</EapHostConfig>
+						</EAPConfig>
+					</OneX>
+					<EapHostUserCredentials
+						xmlns="http://www.microsoft.com/provisioning/EapHostUserCredentials"
+						xmlns:eapCommon="http://www.microsoft.com/provisioning/EapCommon"
+						xmlns:baseEap="http://www.microsoft.com/provisioning/BaseEapMethodUserCredentials">
+						<EapMethod>
+							<eapCommon:Type>21</eapCommon:Type>
+							<eapCommon:AuthorId>311</eapCommon:AuthorId>
+						</EapMethod>
+						<Credentials
+							xmlns="http://www.microsoft.com/provisioning/EapHostUserCredentials">
+							<EapTtls
+								xmlns="http://www.microsoft.com/provisioning/EapTtlsUserPropertiesV1">
+								<EapHostUserCredentials
+									xmlns="http://www.microsoft.com/provisioning/EapHostUserCredentials"
+									xmlns:eapCommon="http://www.microsoft.com/provisioning/EapCommon"
+									xmlns:baseEap="http://www.microsoft.com/provisioning/BaseEapMethodUserCredentials">
+									<EapMethod>
+										<eapCommon:Type>26</eapCommon:Type>
+										<eapCommon:AuthorId>0</eapCommon:AuthorId>
+									</EapMethod>
+									<Credentials
+										xmlns:eapUser="http://www.microsoft.com/provisioning/EapUserPropertiesV1"
+										xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+										xmlns:baseEap="http://www.microsoft.com/provisioning/BaseEapUserPropertiesV1"
+										xmlns:MsPeap="http://www.microsoft.com/provisioning/MsPeapUserPropertiesV1"
+										xmlns:MsChapV2="http://www.microsoft.com/provisioning/MsChapV2UserPropertiesV1">
+										<baseEap:Eap>
+											<baseEap:Type>26</baseEap:Type>
+											<MsChapV2:EapType>
+												<MsChapV2:Username>TestUser</MsChapV2:Username>
+												<MsChapV2:Password>TestPassword</MsChapV2:Password>
+												<MsChapV2:LogonDomain />
+											</MsChapV2:EapType>
+										</baseEap:Eap>
+									</Credentials>
+								</EapHostUserCredentials>
+							</EapTtls>
+						</Credentials>
+					</EapHostUserCredentials>
+				</security>
+			</MSM>
+		</WLANProfile>
+	</WLANProfiles>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+			<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+			<Reference URI="">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+				<DigestValue>Mr2QnGAobrEEdjli9pfVccDMv/A=</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>
+			GGZGfJ66IQ1Ad4c1CZvNtZHGVTnxyS7RRGz4RbJyErxkmdL+ogMdfS3EtTKI17gZRk8uoXaFAzdoSrD9FHOHl7sN0kkL6jb52sJLq2v+Vf27XKcrRVmpYpySNYk2szS1XF2vsP15TemAWIiO0lQ1VX/2odVOaWV1O7GimSfrV6LO1Xbo/kNqwjhOIQIQFNfqqXt5s4iWknuF5IvGbUyRKK2/GqxPybiPMwbMgGCAd+xrRmBSdEFnyhqfIPfvf+bK6bWMbfecJUGm6dttpGZr+p7irGBCmyrGinaB45cxEZlgAtWx9vx2dfKLpYP7VoeuGlvb4Um9aURIfA6Uq6gekA==</SignatureValue>
+		<KeyInfo>
+			<X509Data>
+				<X509Certificate>
+					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</X509Certificate>
+				<X509Certificate>
+					MIIEtjCCA56gAwIBAgIQDHmpRLCMEZUgkmFf4msdgzANBgkqhkiG9w0BAQsFADBsMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMSswKQYDVQQDEyJEaWdpQ2VydCBIaWdoIEFzc3VyYW5jZSBFViBSb290IENBMB4XDTEzMTAyMjEyMDAwMFoXDTI4MTAyMjEyMDAwMFowdTELMAkGA1UEBhMCVVMxFTATBgNVBAoTDERpZ2lDZXJ0IEluYzEZMBcGA1UECxMQd3d3LmRpZ2ljZXJ0LmNvbTE0MDIGA1UEAxMrRGlnaUNlcnQgU0hBMiBFeHRlbmRlZCBWYWxpZGF0aW9uIFNlcnZlciBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANdTpARR+JmmFkhLZyeqk0nQOe0MsLAAh/FnKIaFjI5j2ryxQDji0/XspQUYuD0+xZkXMuwYjPrxDKZkIYXLBxA0sFKIKx9om9KxjxKws9LniB8f7zh3VFNfgHk/LhqqqB5LKw2rt2O5Nbd9FLxZS99RStKh4gzikIKHaq7q12TWmFXo/a8aUGxUvBHy/Urynbt/DvTVvo4WiRJV2MBxNO723C3sxIclho3YIeSwTQyJ3DkmF93215SF2AQhcJ1vb/9cuhnhRctWVyh+HA1BV6q3uCe7seT6Ku8hI3UarS2bhjWMnHe1c63YlC3k8wyd7sFOYn4XwHGeLN7x+RAoGTMCAwEAAaOCAUkwggFFMBIGA1UdEwEB/wQIMAYBAf8CAQAwDgYDVR0PAQH/BAQDAgGGMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjA0BggrBgEFBQcBAQQoMCYwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBLBgNVHR8ERDBCMECgPqA8hjpodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRIaWdoQXNzdXJhbmNlRVZSb290Q0EuY3JsMD0GA1UdIAQ2MDQwMgYEVR0gADAqMCgGCCsGAQUFBwIBFhxodHRwczovL3d3dy5kaWdpY2VydC5jb20vQ1BTMB0GA1UdDgQWBBQ901Cl1qCt7vNKYApl0yHU+PjWDzAfBgNVHSMEGDAWgBSxPsNpA/i/RwHUmCYaCALvY2QrwzANBgkqhkiG9w0BAQsFAAOCAQEAnbbQkIbhhgLtxaDwNBx0wY12zIYKqPBKikLWP8ipTa18CK3mtlC4ohpNiAexKSHc59rGPCHg4xFJcKx6HQGkyhE6V6t9VypAdP3THYUYUN9XR3WhfVUgLkc3UHKMf4Ib0mKPLQNa2sPIoc4sUqIAY+tzunHISScjl2SFnjgOrWNoPLpSgVh5oywM395t6zHyuqB8bPEs1OG9d4Q3A84ytciagRpKkk47RpqF/oOi+Z6Mo8wNXrM9zwR4jxQUezKcxwCmXMS1oVWNWlZopCJwqjyBcdmdqEU79OX2olHdx3ti6G8MdOu42vi/hw15UJGQmxg7kVkn8TUoE6smftX3eg==</X509Certificate>
+			</X509Data>
+		</KeyInfo>
+	</Signature>
+</CarrierProvisioning>
